@@ -7,6 +7,10 @@ android {
     namespace = "com.example.feastlyandroid"
     compileSdk = 35
 
+    buildFeatures {
+        dataBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.feastlyandroid"
         minSdk = 24
