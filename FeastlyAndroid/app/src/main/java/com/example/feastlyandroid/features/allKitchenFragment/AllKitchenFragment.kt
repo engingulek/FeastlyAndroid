@@ -17,6 +17,7 @@ import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.feastlyandroid.R
 import com.example.feastlyandroid.databinding.FragmentAllKitchenBinding
@@ -36,8 +37,17 @@ class AllKitchenFragment : Fragment(){
         desing.allKitcthenRcv.layoutManager = StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL)
 
         viewModel.kitchenList.observe(viewLifecycleOwner){
-            val adapter = AllKitchenAdapter(requireContext(),it)
+            val adapter = AllKitchenAdapter(requireContext(),viewModel,it)
             desing.adapter = adapter
+        }
+
+        viewModel.selectedAllKitchenLiveData.observe(viewLifecycleOwner){
+            desing.listState = it.isNotEmpty()
+        }
+
+
+        desing.closeButton.setOnClickListener {
+            findNavController().navigateUp()
         }
         return  desing.root
     }

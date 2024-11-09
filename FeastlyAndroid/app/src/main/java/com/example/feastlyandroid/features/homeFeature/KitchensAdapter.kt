@@ -1,5 +1,6 @@
 package com.example.feastlyandroid.features.homeFeature
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -34,5 +35,9 @@ class KitchensAdapter(var mContext:Context,
         val kitchen = kitchenList[position]
         holder.desing.kitchenNameTxt.text = kitchen.name
         PicassoImage.covertToPicasso(kitchen.imageURL,holder.desing.kitchenImage)
+
+        holder.desing.designType = false
     }
+
+
 }

@@ -3,9 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="adapter"
             type="com.example.feastlyandroid.features.allKitchenFragment.AllKitchenAdapter" />
+        <variable
+            name="listState"
+            type="Boolean" />
+        <variable
+            name="fragment"
+            type="com.example.feastlyandroid.features.allKitchenFragment.AllKitchenFragment" />
+
 
     </data>
 
@@ -20,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="All Kitchen"
+            android:text="@string/allKitchensTitle"
             android:textColor="@color/secondaryTitleColor"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -28,17 +36,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:text="Clear"
-            android:textColor="@color/secondaryTitleColor"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/allKitcthenRcv"
@@ -60,12 +57,14 @@
             android:text="@string/list_restaurants"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:enabled="@{listState}"
+            android:background="@{listState ? @color/secondaryTitleColor : @color/enableFalse}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/closeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

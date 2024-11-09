@@ -1,6 +1,8 @@
 package com.example.feastlyandroid.features.allKitchenFragment
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,7 +13,9 @@ import com.example.feastlyandroid.features.homeFeature.Kitchen
 
 import com.example.feastlyandroid.utils.PicassoImage
 
-class AllKitchenAdapter(var mContext: Context,var list:List<Kitchen>)
+class AllKitchenAdapter(var mContext: Context,
+                        var viewModel: AllKitchenViewModel,
+                        var list:List<Kitchen>)
     : RecyclerView.Adapter<AllKitchenAdapter.AllKitchesDesigneerKeeper>() {
     inner class AllKitchesDesigneerKeeper(desing: KitchenDesignBinding)
         :RecyclerView.ViewHolder(desing.root){
@@ -32,10 +36,21 @@ class AllKitchenAdapter(var mContext: Context,var list:List<Kitchen>)
         return  list.count()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: AllKitchesDesigneerKeeper, position: Int) {
         val kitchen = list[position]
         holder.desing.kitchenNameTxt.text = kitchen.name
         PicassoImage.covertToPicasso(kitchen.imageURL,holder.desing.kitchenImage)
+
+        holder.desing.kitchenConstraintLayout.setOnClickListener {
+            viewModel.onClickKitchen(kitchen.id)
+            notifyDataSetChanged()
+        }
+
+        val result = viewModel.kitchenDesignType(kitchen.id)
+        holder.desing.designType = result
     }
+
+
 
 }
