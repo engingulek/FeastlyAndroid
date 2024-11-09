@@ -9,5 +9,15 @@
         android:id="@+id/homeFragment"
         android:name="com.example.feastlyandroid.features.homeFeature.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/toAllKitchenFragment"
+            app:destination="@id/allKitchenFragment"
+            app:enterAnim="@android:anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/allKitchenFragment"
+        android:name="com.example.feastlyandroid.features.allKitchenFragment.AllKitchenFragment"
+        android:label="fragment_all_kitchen"
+        tools:layout="@layout/fragment_all_kitchen" />
 </navigation>

@@ -8,9 +8,11 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.feastlyandroid.R
 import com.example.feastlyandroid.databinding.FragmentHomeBinding
+import com.example.feastlyandroid.utils.toFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,10 +37,15 @@ class HomeFragment : Fragment() {
             design.kitchensAdapter = adapter
             Log.e("Last","${it.size}")
         }
-
+        design.allKitchensTxt.setOnClickListener {
+            Navigation.toFragment(it,R.id.toAllKitchenFragment)
+        }
         return  design.root
 
     }
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
