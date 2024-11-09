@@ -13,7 +13,10 @@
         <action
             android:id="@+id/toAllKitchenFragment"
             app:destination="@id/allKitchenFragment"
-            app:enterAnim="@android:anim/slide_in_left" />
+            app:enterAnim="@anim/enter_from_bottom"
+            app:exitAnim="@anim/exit_to_top"
+            app:popEnterAnim="@anim/enter_from_top"
+            app:popExitAnim="@anim/exit_to_bottom" />
     </fragment>
     <fragment
         android:id="@+id/allKitchenFragment"

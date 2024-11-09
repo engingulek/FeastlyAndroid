@@ -5,4 +5,6 @@
     <string name="homePageTitle">Home Page</string>
     <string name="kitchensTitle">Kitchens</string>
     <string name="allKitchensTitle">All Kitchens</string>
+    <string name="list_restaurants">List Restaurants</string>
+    <string name="clear">Clear</string>
 </resources>
