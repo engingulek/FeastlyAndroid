@@ -7,11 +7,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feastlyandroid.R
 import com.example.feastlyandroid.databinding.KitchenDesignBinding
+import com.example.feastlyandroid.features.homeFeature.Kitchen
 
+import com.example.feastlyandroid.utils.PicassoImage
 
-import com.example.feastlyandroid.features.homeFeature.KitchensAdapter
-
-class AllKitchenAdapter(var mContext: Context)
+class AllKitchenAdapter(var mContext: Context,var list:List<Kitchen>)
     : RecyclerView.Adapter<AllKitchenAdapter.AllKitchesDesigneerKeeper>() {
     inner class AllKitchesDesigneerKeeper(desing: KitchenDesignBinding)
         :RecyclerView.ViewHolder(desing.root){
@@ -29,11 +29,13 @@ class AllKitchenAdapter(var mContext: Context)
     }
 
     override fun getItemCount(): Int {
-        return  10
+        return  list.count()
     }
 
     override fun onBindViewHolder(holder: AllKitchesDesigneerKeeper, position: Int) {
-        holder.desing.kitchenNameTxt.text = "Name"
+        val kitchen = list[position]
+        holder.desing.kitchenNameTxt.text = kitchen.name
+        PicassoImage.covertToPicasso(kitchen.imageURL,holder.desing.kitchenImage)
     }
 
 }

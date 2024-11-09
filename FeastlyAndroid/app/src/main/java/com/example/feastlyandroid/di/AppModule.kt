@@ -1,5 +1,9 @@
 package com.example.feastlyandroid.di
 
+import com.example.feastlyandroid.features.allKitchenFragment.AllKitchenRepository
+import com.example.feastlyandroid.features.allKitchenFragment.AllKitchenRepositoryInterface
+import com.example.feastlyandroid.features.allKitchenFragment.AllKitchenService
+import com.example.feastlyandroid.features.allKitchenFragment.AllKitchenServiceInterface
 import com.example.feastlyandroid.features.homeFeature.HomeService
 import com.example.feastlyandroid.features.homeFeature.HomeServiceInterface
 import com.example.feastlyandroid.features.homeFeature.KitchenRepository
@@ -20,6 +24,14 @@ class AppModule {
     fun provideKitchenRepository(apiService: ApiService) : KitchenRepositoryInterface {
         val service : HomeServiceInterface = HomeService(apiService)
         val repo : KitchenRepositoryInterface = KitchenRepository(service)
+        return  repo
+    }
+
+    @Provides
+    @Singleton
+    fun provideAllKitchenRepository(apiService: ApiService) : AllKitchenRepositoryInterface {
+        val service : AllKitchenServiceInterface = AllKitchenService(apiService)
+        val repo : AllKitchenRepositoryInterface = AllKitchenRepository(service)
         return  repo
     }
 

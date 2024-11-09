@@ -15,15 +15,18 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.feastlyandroid.R
 import com.example.feastlyandroid.databinding.FragmentAllKitchenBinding
+import dagger.hilt.android.AndroidEntryPoint
 import org.w3c.dom.Text
 
-
+@AndroidEntryPoint
 class AllKitchenFragment : Fragment(){
     private lateinit var desing:FragmentAllKitchenBinding
+    private lateinit var viewModel:AllKitchenViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,15 +34,18 @@ class AllKitchenFragment : Fragment(){
     ): View? {
         desing = DataBindingUtil.inflate(inflater,R.layout.fragment_all_kitchen, container, false)
         desing.allKitcthenRcv.layoutManager = StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL)
-        val adapter = AllKitchenAdapter(requireContext())
-        desing.adapter = adapter
 
-
-
+        viewModel.kitchenList.observe(viewLifecycleOwner){
+            val adapter = AllKitchenAdapter(requireContext(),it)
+            desing.adapter = adapter
+        }
         return  desing.root
     }
 
-
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel : AllKitchenViewModel by viewModels()
+        viewModel = tempViewModel
+    }
 
 }
