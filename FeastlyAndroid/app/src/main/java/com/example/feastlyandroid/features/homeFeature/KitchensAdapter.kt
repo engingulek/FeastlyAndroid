@@ -5,10 +5,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feastlyandroid.R
 import com.example.feastlyandroid.databinding.KitchenDesignBinding
 import com.example.feastlyandroid.utils.PicassoImage
+import com.example.feastlyandroid.utils.toFragment
+
 
 class KitchensAdapter(var mContext:Context,
                       var kitchenList:List<Kitchen>,
@@ -35,8 +38,13 @@ class KitchensAdapter(var mContext:Context,
         val kitchen = kitchenList[position]
         holder.desing.kitchenNameTxt.text = kitchen.name
         PicassoImage.covertToPicasso(kitchen.imageURL,holder.desing.kitchenImage)
-
         holder.desing.designType = false
+        val listKitchen: Array<String> = arrayOf(kitchen.id)
+        holder.desing.kitchenConstraintLayout.setOnClickListener{
+            val nav = HomeFragmentDirections.toFilterFromHomePage(listKitchen)
+            Navigation.toFragment(it,nav)
+
+        }
     }
 
 

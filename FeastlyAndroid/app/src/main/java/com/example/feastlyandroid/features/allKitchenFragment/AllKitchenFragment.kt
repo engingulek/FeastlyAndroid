@@ -17,10 +17,12 @@ import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.feastlyandroid.R
 import com.example.feastlyandroid.databinding.FragmentAllKitchenBinding
+import com.example.feastlyandroid.utils.toFragment
 import dagger.hilt.android.AndroidEntryPoint
 import org.w3c.dom.Text
 
@@ -49,6 +51,14 @@ class AllKitchenFragment : Fragment(){
         desing.closeButton.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        desing.listButton.setOnClickListener {
+            val list = viewModel.getSelectedList()
+            val nav = AllKitchenFragmentDirections.toFilterFromAllKitchens(list.toTypedArray())
+            Navigation.toFragment(it,nav)
+        }
+
+
         return  desing.root
     }
 
