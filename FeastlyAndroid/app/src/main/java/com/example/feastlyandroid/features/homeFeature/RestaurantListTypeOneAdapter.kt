@@ -10,6 +10,7 @@ import com.example.feastlyandroid.R
 import com.example.feastlyandroid.utils.PicassoImage
 
 class RestaurantListTypeOneAdapter(var mContext: Context,
+                                   var list:List<Restaurant>,
                         var viewModel: HomeViewModel) :
     RecyclerView.Adapter<RestaurantListTypeOneAdapter.RestaurnatDesignKeeper>() {
 
@@ -31,11 +32,17 @@ class RestaurantListTypeOneAdapter(var mContext: Context,
     }
 
     override fun getItemCount(): Int {
-        return  10
+        return  list.count()
     }
 
     override fun onBindViewHolder(holder: RestaurnatDesignKeeper, position: Int) {
-        holder.design.restaurantName.text = "Name"
-        PicassoImage.covertToPicasso("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGR6yh7uysHIwyfR6yGTcxed2XQgXgz3CZVw&s",holder.design.restaurantImageView)
+        val restaurant = list[position]
+        holder.design.restaurantName.text = restaurant.name
+        PicassoImage.covertToPicasso(restaurant.imageURL,holder.design.restaurantImageView)
+       val kitchenType = restaurant.kitchens.joinToString(separator = ",") { it.name }
+        holder.design.kitchensInfo.text = kitchenType
+        val item = viewModel.calculateDistanceAndMinute(restaurant.latitude,restaurant.longitude)
+
+        holder.design.kitchensInfo.text = "${String.format("%.2f", item.first)} km * ${String.format("%.2f", item.second)} dk ${restaurant.minWage} min wage"
     }
 }

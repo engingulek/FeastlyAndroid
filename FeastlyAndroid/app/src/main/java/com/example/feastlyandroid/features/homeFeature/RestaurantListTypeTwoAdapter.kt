@@ -11,7 +11,9 @@ import com.example.feastlyandroid.databinding.RestaurantListTypeTwoBinding
 import com.example.feastlyandroid.utils.PicassoImage
 
 class RestaurantListTypeTwoAdapter(var mContext: Context,
-    var viewModel: HomeViewModel) : RecyclerView.Adapter<RestaurantListTypeTwoAdapter.RestaurantDesignKeeper>() {
+                                   var list:List<Restaurant>,
+                                   var viewModel: HomeViewModel)
+    : RecyclerView.Adapter<RestaurantListTypeTwoAdapter.RestaurantDesignKeeper>() {
         inner  class RestaurantDesignKeeper(desing:RestaurantListTypeTwoBinding) :
                 RecyclerView.ViewHolder(desing.root){
                     var desing:RestaurantListTypeTwoBinding
@@ -27,12 +29,20 @@ class RestaurantListTypeTwoAdapter(var mContext: Context,
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return list.count()
     }
 
     override fun onBindViewHolder(holder: RestaurantDesignKeeper, position: Int) {
-        holder.desing.restaurantNameTxt.text = "Name"
-        PicassoImage.covertToPicasso("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGR6yh7uysHIwyfR6yGTcxed2XQgXgz3CZVw&s",holder.desing.imageView)
+        val restaurant = list[position]
+        holder.desing.restaurantNameTxt.text = restaurant.name
+        PicassoImage.covertToPicasso(restaurant.imageURL,holder.desing.imageView)
+        val kitchenType = restaurant.kitchens.joinToString(separator = ",") { it.name }
+
+        val item = viewModel.calculateDistanceAndMinute(restaurant.latitude,restaurant.longitude)
+
+        holder.desing.restaurnatInfo.text = "${kitchenType} * ${String.format("%.2f", item.first)} km " +
+                "* ${String.format("%.2f", item.second)} dk " +
+                "* ${restaurant.minWage} min wage"
     }
 
 

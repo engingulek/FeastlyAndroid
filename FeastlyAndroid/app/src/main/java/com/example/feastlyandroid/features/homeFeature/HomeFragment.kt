@@ -50,13 +50,15 @@ class HomeFragment : Fragment() {
             design.listType = it
         }
 
-        viewModel.listDesignType.observe(viewLifecycleOwner){
-            if (it){
-                val restaurantAdapter = RestaurantListTypeOneAdapter(requireContext(),viewModel)
-                design.restaurantListTypeOneAdapter = restaurantAdapter
-            }else{
-                val restaurantAdapter = RestaurantListTypeTwoAdapter(requireContext(),viewModel)
-                design.restaurantListTypeTwoAdapter = restaurantAdapter
+        viewModel.listDesignType.observe(viewLifecycleOwner){ type ->
+            viewModel.restaurantList.observe(viewLifecycleOwner){ list ->
+                if (type){
+                    val restaurantAdapter = RestaurantListTypeOneAdapter(requireContext(),list,viewModel)
+                    design.restaurantListTypeOneAdapter = restaurantAdapter
+                }else{
+                    val restaurantAdapter = RestaurantListTypeTwoAdapter(requireContext(),list,viewModel)
+                    design.restaurantListTypeTwoAdapter = restaurantAdapter
+                }
             }
         }
 
