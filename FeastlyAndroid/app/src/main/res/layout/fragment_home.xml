@@ -17,6 +17,19 @@
         <variable
             name="kitchensAdapter"
             type="com.example.feastlyandroid.features.homeFeature.KitchensAdapter" />
+        <variable
+            name="listType"
+            type="Boolean" />
+    <variable
+        name="restaurants"
+        type="String" />
+
+        <variable
+            name="restaurantListTypeOneAdapter"
+            type="com.example.feastlyandroid.features.homeFeature.RestaurantListTypeOneAdapter" />
+        <variable
+            name="restaurantListTypeTwoAdapter"
+            type="com.example.feastlyandroid.features.homeFeature.RestaurantListTypeTwoAdapter" />
 
     </data>
 
@@ -71,6 +84,60 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:id="@+id/restaurantTitleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@{restaurants}"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kitchensRycV" />
+
+
+        <LinearLayout
+            android:id="@+id/viewListId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kitchensRycV">
+
+            <ImageView
+                android:id="@+id/viewImage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                app:imageDrawable="@{listType ? @drawable/list_type_one : @drawable/list_type_two}" />
+
+            <TextView
+                android:id="@+id/viewTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/view"
+                android:textColor="@color/secondaryTitleColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurnatRycv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:adapter="@{listType ? restaurantListTypeOneAdapter : restaurantListTypeTwoAdapter}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewListId" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
