@@ -7,4 +7,7 @@
     <string name="allKitchensTitle">All Kitchens</string>
     <string name="list_restaurants">List Restaurants</string>
     <string name="clear">Clear</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="image">Resim</string>
+    <string name="view">View</string>
 </resources>

@@ -29,16 +29,41 @@ class HomeFragment : Fragment() {
         design.toolbarTitle = getString(R.string.homePageTitle)
         design.kitchensTitle = getString(R.string.kitchensTitle)
         design.allKitchensTitle = getString( R.string.allKitchensTitle)
+        design.restaurants = getString(R.string.restaurants)
 
 
         design.kitchensRycV.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        design.restaurnatRycv.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         viewModel.kitchenList.observe(viewLifecycleOwner){
+
             val adapter = KitchensAdapter(requireContext(),it,viewModel)
             design.kitchensAdapter = adapter
             Log.e("Last","${it.size}")
+
+
         }
         design.allKitchensTxt.setOnClickListener {
             Navigation.toFragment(it,R.id.toAllKitchenFragment)
+        }
+
+        viewModel.listDesignType.observe(viewLifecycleOwner){
+            design.listType = it
+        }
+
+        viewModel.listDesignType.observe(viewLifecycleOwner){
+            if (it){
+                val restaurantAdapter = RestaurantListTypeOneAdapter(requireContext(),viewModel)
+                design.restaurantListTypeOneAdapter = restaurantAdapter
+            }else{
+                val restaurantAdapter = RestaurantListTypeTwoAdapter(requireContext(),viewModel)
+                design.restaurantListTypeTwoAdapter = restaurantAdapter
+            }
+        }
+
+
+        design.viewListId.setOnClickListener{
+            viewModel.onClickListDesign()
+            Log.e("Test","view list type")
         }
         return  design.root
 

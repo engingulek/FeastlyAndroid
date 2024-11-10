@@ -11,9 +11,12 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val kitchenRepository: KitchenRepositoryInterface) : ViewModel(){
     var kitchenList = MutableLiveData<List<Kitchen>>()
+    var listDesignType = MutableLiveData<Boolean>()
+    private var listType:Boolean = false
 
     init {
         getData()
+        listDesignType.value = listType
     }
 
     private  fun getData(){
@@ -21,5 +24,10 @@ class HomeViewModel @Inject constructor(private val kitchenRepository: KitchenRe
         kitchenList = kitchenRepository.kitchens
     }
 
+    fun onClickListDesign()
+    {
+        listType = !listType
+        listDesignType.value = listType
+    }
 
 }

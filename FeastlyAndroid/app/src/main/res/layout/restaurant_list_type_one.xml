@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_corner_background"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/restaurantImageView"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/restaurantName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Restaurant Name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/restaurantImageView"
+            app:layout_constraintTop_toTopOf="@id/restaurantImageView" />
+
+        <TextView
+            android:id="@+id/kitchensInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Kitchens Info"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/restaurantImageView"
+            app:layout_constraintTop_toBottomOf="@id/restaurantName" />
+
+        <TextView
+            android:id="@+id/restaurantInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Restaurant Info"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/restaurantImageView"
+            app:layout_constraintTop_toBottomOf="@id/kitchensInfo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</layout>
