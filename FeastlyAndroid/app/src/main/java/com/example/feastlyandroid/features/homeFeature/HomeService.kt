@@ -47,11 +47,11 @@ class HomeService(private val apiService: ApiService) :  HomeServiceInterface {
             ) {
                 val list = response.body()?.data
                 restaurantList.value = list ?: emptyList()
-                Log.e("service","${list?.count()}")
+                Log.e("service res","${list?.count()}")
             }
 
             override fun onFailure(call: Call<ResultData<Restaurant>>, t: Throwable) {
-                allKitchenList.value = emptyList()
+                restaurantList.value = emptyList()
             }
         })
     }

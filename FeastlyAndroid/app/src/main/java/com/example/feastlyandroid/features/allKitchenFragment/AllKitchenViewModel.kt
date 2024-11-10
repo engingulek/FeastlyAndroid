@@ -39,8 +39,7 @@ class AllKitchenViewModel @Inject constructor(private val allKitchenRepository: 
         return  control
     }
 
-    fun clearList(){
-        selectedAKitchenList.clear()
-        selectedAllKitchenLiveData.value = selectedAKitchenList
+    fun getSelectedList() : MutableList<String> {
+       return selectedAKitchenList
     }
 }

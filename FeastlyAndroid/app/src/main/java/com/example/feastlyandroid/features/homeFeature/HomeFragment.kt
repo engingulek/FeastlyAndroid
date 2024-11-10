@@ -61,8 +61,7 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
-
+        
         design.viewListId.setOnClickListener{
             viewModel.onClickListDesign()
             Log.e("Test","view list type")

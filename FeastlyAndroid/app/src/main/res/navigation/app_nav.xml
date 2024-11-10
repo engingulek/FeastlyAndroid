@@ -17,10 +17,27 @@
             app:exitAnim="@anim/exit_to_top"
             app:popEnterAnim="@anim/enter_from_top"
             app:popExitAnim="@anim/exit_to_bottom" />
+        <action
+            android:id="@+id/toFilterFromHomePage"
+            app:destination="@id/filterRestaurnatListFragment" />
     </fragment>
     <fragment
         android:id="@+id/allKitchenFragment"
         android:name="com.example.feastlyandroid.features.allKitchenFragment.AllKitchenFragment"
         android:label="fragment_all_kitchen"
-        tools:layout="@layout/fragment_all_kitchen" />
+        tools:layout="@layout/fragment_all_kitchen" >
+        <action
+            android:id="@+id/toFilterFromAllKitchens"
+            app:destination="@id/filterRestaurnatListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterRestaurnatListFragment"
+        android:name="com.example.feastlyandroid.features.filterListFeature.FilterRestaurnatListFragment"
+        android:label="FilterRestaurnatListFragment"
+        tools:layout="@layout/fragment_filter_restaurnat_list"
+        >
+        <argument
+            android:name="selectedKitchen"
+            app:argType="string[]" />
+    </fragment>
 </navigation>
