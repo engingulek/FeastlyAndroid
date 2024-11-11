@@ -1,6 +1,7 @@
 package com.example.feastlyandroid.features.filterListFeature
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,7 +12,7 @@ import com.example.feastlyandroid.features.homeFeature.Restaurant
 import com.example.feastlyandroid.utils.PicassoImage
 
 class FilterRestaurantAdapter(var mContext: Context,
-                              var list:List<Restaurant>) :
+                              var list:List<Restaurant>,var viewModel:FilterRestaurantViewModelInterface) :
     RecyclerView.Adapter<FilterRestaurantAdapter.RestaurnatDesignKeeper>() {
 
     inner class RestaurnatDesignKeeper(design: RestaurantListTypeOneBinding
@@ -37,10 +38,15 @@ class FilterRestaurantAdapter(var mContext: Context,
     }
 
     override fun onBindViewHolder(holder: RestaurnatDesignKeeper, position: Int) {
+
         val restaurant = list[position]
         holder.design.restaurantName.text = restaurant.name
         PicassoImage.covertToPicasso(restaurant.imageURL,holder.design.restaurantImageView)
         val kitchenType = restaurant.kitchens.joinToString(separator = ",") { it.name }
         holder.design.kitchensInfo.text = kitchenType
+        val item = viewModel.calculateDistanceAndMinute(restaurant.latitude,restaurant.longitude)
+        holder.design.kitchensInfo.text = kitchenType
+        holder.design.restaurantInfo.text = "${String.format("%.2f", item.first)} km * " +
+                "${String.format("%.2f", item.second)} dk * ${restaurant.minWage} min wage"
     }
 }

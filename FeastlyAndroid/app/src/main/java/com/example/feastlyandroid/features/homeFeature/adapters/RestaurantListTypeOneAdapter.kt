@@ -46,7 +46,7 @@ class RestaurantListTypeOneAdapter(var mContext: Context,
        val kitchenType = restaurant.kitchens.joinToString(separator = ",") { it.name }
         holder.design.kitchensInfo.text = kitchenType
         val item = viewModel.calculateDistanceAndMinute(restaurant.latitude,restaurant.longitude)
-
-        holder.design.kitchensInfo.text = "${String.format("%.2f", item.first)} km * ${String.format("%.2f", item.second)} dk ${restaurant.minWage} min wage"
+        holder.design.kitchensInfo.text = kitchenType
+        holder.design.restaurantInfo.text = "${String.format("%.2f", item.first)} km * ${String.format("%.2f", item.second)} dk * ${restaurant.minWage} min wage"
     }
 }
