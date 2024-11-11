@@ -14,7 +14,7 @@ import com.example.feastlyandroid.features.homeFeature.Kitchen
 import com.example.feastlyandroid.utils.PicassoImage
 
 class AllKitchenAdapter(var mContext: Context,
-                        var viewModel: AllKitchenViewModel,
+                        var viewModel: AllKitchenViewModelInterface,
                         var list:List<Kitchen>)
     : RecyclerView.Adapter<AllKitchenAdapter.AllKitchesDesigneerKeeper>() {
     inner class AllKitchesDesigneerKeeper(desing: KitchenDesignBinding)
@@ -50,7 +50,4 @@ class AllKitchenAdapter(var mContext: Context,
         val result = viewModel.kitchenDesignType(kitchen.id)
         holder.desing.designType = result
     }
-
-
-
 }

@@ -17,30 +17,28 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FilterRestaurnatListFragment : Fragment() {
     private lateinit var design: FragmentFilterRestaurnatListBinding
-    private lateinit var viewModel: FilterRestaurantViewModel
+    private lateinit var viewModel: FilterRestaurantViewModelInterface
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val bundle:FilterRestaurnatListFragmentArgs by navArgs()
         val list = bundle.selectedKitchen
-        Log.e("listt","${list[0]}")
+
         viewModel.getData(list.toList())
-        design = DataBindingUtil.inflate(inflater,R.layout.fragment_filter_restaurnat_list,container,false)
+        design = DataBindingUtil.inflate(inflater,R.layout.fragment_filter_restaurnat_list,
+            container,false)
       viewModel.filterRestaurantList.observe(viewLifecycleOwner){
           val adapter = FilterRestaurantAdapter(requireContext(), it)
           design.adapter = adapter
           design.filterTitleTxt.text = "Filtered Restaurants(${it.count()})"
       }
-
         return design.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val tempViewModel : FilterRestaurantViewModel by viewModels()
+        val tempViewModel : FilterRestaurantViewModelInterface by viewModels<FilterRestaurantViewModel>()
         viewModel = tempViewModel
     }
-
-
 }

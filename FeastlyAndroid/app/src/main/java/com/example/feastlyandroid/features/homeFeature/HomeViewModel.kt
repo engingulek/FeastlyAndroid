@@ -5,16 +5,37 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
+import com.example.feastlyandroid.R
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlin.math.*
 
+interface HomeViewModelInterface {
+    var kitchenList : MutableLiveData<List<Kitchen>>
+    var listDesignType : MutableLiveData<Boolean>
+    var restaurantList : MutableLiveData<List<Restaurant>>
+    var toolbarTitle :Int
+    var kitchensTitle:Int
+    var allKitchensTitle:Int
+    var restaurants:Int
+
+
+    fun onClickListDesign()
+
+    fun calculateDistanceAndMinute(latitude:Double,longitude:Double) : Pair<Double,Double>
+}
+
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val kitchenRepository: KitchenRepositoryInterface) : ViewModel(){
-    var kitchenList = MutableLiveData<List<Kitchen>>()
-    var listDesignType = MutableLiveData<Boolean>()
-    var restaurantList = MutableLiveData<List<Restaurant>>()
+class HomeViewModel @Inject constructor(private val homeRepository: HomeRepositoryInterface) : ViewModel(),HomeViewModelInterface{
+   override var kitchenList = MutableLiveData<List<Kitchen>>()
+    override  var listDesignType = MutableLiveData<Boolean>()
+    override var restaurantList = MutableLiveData<List<Restaurant>>()
     private var listType:Boolean = false
+    override  var toolbarTitle :Int = R.string.emptyString
+    override  var kitchensTitle:Int  = R.string.emptyString
+    override  var allKitchensTitle:Int  = R.string.emptyString
+    override   var restaurants:Int  = R.string.emptyString
+
 
     init {
         getData()
@@ -22,19 +43,24 @@ class HomeViewModel @Inject constructor(private val kitchenRepository: KitchenRe
     }
 
     private  fun getData(){
-        kitchenRepository.getKitchens()
-        kitchenList = kitchenRepository.kitchens
-        kitchenRepository.getRestaurants()
-        restaurantList = kitchenRepository.restaurants
+        homeRepository.getKitchens()
+        kitchenList = homeRepository.kitchens
+        homeRepository.getRestaurants()
+        restaurantList = homeRepository.restaurants
+
+       toolbarTitle =   R.string.homePageTitle
+      kitchensTitle = R.string.kitchensTitle
+     allKitchensTitle =  R.string.allKitchensTitle
+       restaurants = R.string.restaurants
     }
 
-    fun onClickListDesign()
+   override fun onClickListDesign()
     {
         listType = !listType
         listDesignType.value = listType
     }
 
-    fun calculateDistanceAndMinute(latitude:Double,longitude:Double) : Pair<Double,Double> {
+   override fun calculateDistanceAndMinute(latitude:Double,longitude:Double) : Pair<Double,Double> {
        val corelatitude = 41.09732
        val corlongitude = 29.03126
 

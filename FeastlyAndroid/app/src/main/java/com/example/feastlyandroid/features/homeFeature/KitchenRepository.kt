@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
-interface  KitchenRepositoryInterface {
+interface  HomeRepositoryInterface {
     var kitchens:MutableLiveData<List<Kitchen>>
     var restaurants:MutableLiveData<List<Restaurant>>
     fun  getKitchens()
@@ -12,7 +12,7 @@ interface  KitchenRepositoryInterface {
 }
 
 
-class KitchenRepository (private var service: HomeServiceInterface) : KitchenRepositoryInterface {
+class HomeRepository (private var service: HomeServiceInterface) : HomeRepositoryInterface {
    override var kitchens:MutableLiveData<List<Kitchen>> = MutableLiveData(emptyList())
     override  var restaurants:MutableLiveData<List<Restaurant>> = MutableLiveData(emptyList())
 

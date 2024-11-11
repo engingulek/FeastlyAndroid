@@ -27,7 +27,6 @@ class AllKitchenService(private val apiService: ApiService) :  AllKitchenService
             ) {
                 val list = response.body()?.data
                 allKitchenList.value = list ?: emptyList()
-                Log.e("service","${list?.count()}")
             }
 
             override fun onFailure(call: Call<ResultData<Kitchen>>, t: Throwable) {

@@ -29,7 +29,7 @@ import org.w3c.dom.Text
 @AndroidEntryPoint
 class AllKitchenFragment : Fragment(){
     private lateinit var desing:FragmentAllKitchenBinding
-    private lateinit var viewModel:AllKitchenViewModel
+    private lateinit var viewModel:AllKitchenViewModelInterface
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +64,7 @@ class AllKitchenFragment : Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val tempViewModel : AllKitchenViewModel by viewModels()
+        val tempViewModel : AllKitchenViewModelInterface by viewModels<AllKitchenViewModel>()
         viewModel = tempViewModel
     }
 
