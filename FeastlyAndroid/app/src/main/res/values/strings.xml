@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">FeastlyAndroid</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="homePageTitle">Home Page</string>
+    <string name="kitchensTitle">Kitchens</string>
+    <string name="allKitchensTitle">All Kitchens</string>
+    <string name="list_restaurants">List Restaurants</string>
+    <string name="clear">Clear</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="image">Resim</string>
+    <string name="view">View</string>
+    <string name="emptyString">""</string>
 </resources>
