@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.feastlyandroid.R
 import com.example.feastlyandroid.databinding.FragmentFilterRestaurnatListBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,8 +29,10 @@ class FilterRestaurnatListFragment : Fragment() {
         viewModel.getData(list.toList())
         design = DataBindingUtil.inflate(inflater,R.layout.fragment_filter_restaurnat_list,
             container,false)
+        design.ryc.layoutManager =  LinearLayoutManager(requireContext(),
+            LinearLayoutManager.VERTICAL,false)
       viewModel.filterRestaurantList.observe(viewLifecycleOwner){
-          val adapter = FilterRestaurantAdapter(requireContext(), it)
+          val adapter = FilterRestaurantAdapter(requireContext(), it,viewModel)
           design.adapter = adapter
           design.filterTitleTxt.text = "Filtered Restaurants(${it.count()})"
       }
