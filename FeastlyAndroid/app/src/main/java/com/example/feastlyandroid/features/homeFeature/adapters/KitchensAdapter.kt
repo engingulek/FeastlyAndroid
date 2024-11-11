@@ -1,6 +1,5 @@
-package com.example.feastlyandroid.features.homeFeature
+package com.example.feastlyandroid.features.homeFeature.adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,13 +8,17 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feastlyandroid.R
 import com.example.feastlyandroid.databinding.KitchenDesignBinding
+import com.example.feastlyandroid.features.homeFeature.HomeFragmentDirections
+import com.example.feastlyandroid.features.homeFeature.HomeViewModel
+import com.example.feastlyandroid.features.homeFeature.HomeViewModelInterface
+import com.example.feastlyandroid.features.homeFeature.Kitchen
 import com.example.feastlyandroid.utils.PicassoImage
 import com.example.feastlyandroid.utils.toFragment
 
 
 class KitchensAdapter(var mContext:Context,
-                      var kitchenList:List<Kitchen>,
-                      var viewModel: HomeViewModel) : RecyclerView.Adapter<KitchensAdapter.KitchesDesigneerKeeper>() {
+                      var kitchenList:List<Kitchen>
+) : RecyclerView.Adapter<KitchensAdapter.KitchesDesigneerKeeper>() {
     inner class KitchesDesigneerKeeper(desing:KitchenDesignBinding)
         :RecyclerView.ViewHolder(desing.root){
             var desing:KitchenDesignBinding

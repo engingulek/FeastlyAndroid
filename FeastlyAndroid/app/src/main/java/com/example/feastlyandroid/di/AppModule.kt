@@ -8,10 +8,10 @@ import com.example.feastlyandroid.features.filterListFeature.FilterRestaurantRep
 import com.example.feastlyandroid.features.filterListFeature.FilterRestaurantRepositoryInterface
 import com.example.feastlyandroid.features.filterListFeature.FilterRestaurantService
 import com.example.feastlyandroid.features.filterListFeature.FilterRestaurantServiceInterface
+import com.example.feastlyandroid.features.homeFeature.HomeRepository
+import com.example.feastlyandroid.features.homeFeature.HomeRepositoryInterface
 import com.example.feastlyandroid.features.homeFeature.HomeService
 import com.example.feastlyandroid.features.homeFeature.HomeServiceInterface
-import com.example.feastlyandroid.features.homeFeature.KitchenRepository
-import com.example.feastlyandroid.features.homeFeature.KitchenRepositoryInterface
 import com.example.feastlyandroid.retrofit.ApiService
 import com.example.feastlyandroid.retrofit.ApiUtils
 import dagger.Module
@@ -25,9 +25,9 @@ import javax.inject.Singleton
 class AppModule {
     @Provides
     @Singleton
-    fun provideKitchenRepository(apiService: ApiService) : KitchenRepositoryInterface {
+    fun provideKitchenRepository(apiService: ApiService) : HomeRepositoryInterface {
         val service : HomeServiceInterface = HomeService(apiService)
-        val repo : KitchenRepositoryInterface = KitchenRepository(service)
+        val repo : HomeRepositoryInterface = HomeRepository(service)
         return  repo
     }
 

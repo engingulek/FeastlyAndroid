@@ -16,7 +16,7 @@
             type="String" />
         <variable
             name="kitchensAdapter"
-            type="com.example.feastlyandroid.features.homeFeature.KitchensAdapter" />
+            type="com.example.feastlyandroid.features.homeFeature.adapters.KitchensAdapter" />
         <variable
             name="listType"
             type="Boolean" />
@@ -26,10 +26,10 @@
 
         <variable
             name="restaurantListTypeOneAdapter"
-            type="com.example.feastlyandroid.features.homeFeature.RestaurantListTypeOneAdapter" />
+            type="com.example.feastlyandroid.features.homeFeature.adapters.RestaurantListTypeOneAdapter" />
         <variable
             name="restaurantListTypeTwoAdapter"
-            type="com.example.feastlyandroid.features.homeFeature.RestaurantListTypeTwoAdapter" />
+            type="com.example.feastlyandroid.features.homeFeature.adapters.RestaurantListTypeTwoAdapter" />
 
     </data>
 

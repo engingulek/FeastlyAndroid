@@ -9,11 +9,20 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlin.math.*
 
+interface HomeViewModelInterface {
+    var kitchenList : MutableLiveData<List<Kitchen>>
+    var listDesignType : MutableLiveData<Boolean>
+    var restaurantList : MutableLiveData<List<Restaurant>>
+    fun onClickListDesign()
+
+    fun calculateDistanceAndMinute(latitude:Double,longitude:Double) : Pair<Double,Double>
+}
+
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val kitchenRepository: KitchenRepositoryInterface) : ViewModel(){
-    var kitchenList = MutableLiveData<List<Kitchen>>()
-    var listDesignType = MutableLiveData<Boolean>()
-    var restaurantList = MutableLiveData<List<Restaurant>>()
+class HomeViewModel @Inject constructor(private val homeRepository: HomeRepositoryInterface) : ViewModel(),HomeViewModelInterface{
+   override var kitchenList = MutableLiveData<List<Kitchen>>()
+    override    var listDesignType = MutableLiveData<Boolean>()
+    override var restaurantList = MutableLiveData<List<Restaurant>>()
     private var listType:Boolean = false
 
     init {
@@ -22,19 +31,19 @@ class HomeViewModel @Inject constructor(private val kitchenRepository: KitchenRe
     }
 
     private  fun getData(){
-        kitchenRepository.getKitchens()
-        kitchenList = kitchenRepository.kitchens
-        kitchenRepository.getRestaurants()
-        restaurantList = kitchenRepository.restaurants
+        homeRepository.getKitchens()
+        kitchenList = homeRepository.kitchens
+        homeRepository.getRestaurants()
+        restaurantList = homeRepository.restaurants
     }
 
-    fun onClickListDesign()
+   override fun onClickListDesign()
     {
         listType = !listType
         listDesignType.value = listType
     }
 
-    fun calculateDistanceAndMinute(latitude:Double,longitude:Double) : Pair<Double,Double> {
+   override fun calculateDistanceAndMinute(latitude:Double,longitude:Double) : Pair<Double,Double> {
        val corelatitude = 41.09732
        val corlongitude = 29.03126
 

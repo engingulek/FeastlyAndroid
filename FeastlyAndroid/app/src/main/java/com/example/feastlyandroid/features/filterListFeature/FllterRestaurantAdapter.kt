@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.feastlyandroid.R
 import com.example.feastlyandroid.databinding.RestaurantListTypeOneBinding
 import com.example.feastlyandroid.features.homeFeature.Restaurant
-import com.example.feastlyandroid.features.homeFeature.RestaurantListTypeOneAdapter
 import com.example.feastlyandroid.utils.PicassoImage
 
 class FilterRestaurantAdapter(var mContext: Context,
@@ -43,8 +42,5 @@ class FilterRestaurantAdapter(var mContext: Context,
         PicassoImage.covertToPicasso(restaurant.imageURL,holder.design.restaurantImageView)
         val kitchenType = restaurant.kitchens.joinToString(separator = ",") { it.name }
         holder.design.kitchensInfo.text = kitchenType
-       // val item = viewModel.calculateDistanceAndMinute(restaurant.latitude,restaurant.longitude)
-
-       // holder.design.kitchensInfo.text = "${String.format("%.2f", item.first)} km * ${String.format("%.2f", item.second)} dk ${restaurant.minWage} min wage"
     }
 }

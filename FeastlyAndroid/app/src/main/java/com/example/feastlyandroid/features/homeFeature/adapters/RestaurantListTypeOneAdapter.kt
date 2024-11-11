@@ -1,4 +1,4 @@
-package com.example.feastlyandroid.features.homeFeature
+package com.example.feastlyandroid.features.homeFeature.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,11 +7,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feastlyandroid.databinding.RestaurantListTypeOneBinding
 import com.example.feastlyandroid.R
+import com.example.feastlyandroid.features.homeFeature.HomeViewModel
+import com.example.feastlyandroid.features.homeFeature.HomeViewModelInterface
+import com.example.feastlyandroid.features.homeFeature.Restaurant
 import com.example.feastlyandroid.utils.PicassoImage
 
 class RestaurantListTypeOneAdapter(var mContext: Context,
                                    var list:List<Restaurant>,
-                        var viewModel: HomeViewModel) :
+                                   var viewModel: HomeViewModelInterface
+) :
     RecyclerView.Adapter<RestaurantListTypeOneAdapter.RestaurnatDesignKeeper>() {
 
         inner class RestaurnatDesignKeeper(design:RestaurantListTypeOneBinding
