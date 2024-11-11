@@ -25,12 +25,10 @@ class FilterRestaurantService(private val apiService: ApiService) : FilterRestau
             ) {
                 val list = response.body()?.data
                 filterRestaurantList.value = list ?: emptyList()
-                Log.e("service mm","${list?.count()}")
             }
 
             override fun onFailure(call: Call<ResultData<Restaurant>>, t: Throwable) {
                 filterRestaurantList.value = emptyList()
-                Log.e("List Error","${t.message}")
             }
         })
     }

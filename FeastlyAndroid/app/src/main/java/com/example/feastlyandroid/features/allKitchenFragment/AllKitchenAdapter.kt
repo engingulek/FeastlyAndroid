@@ -50,7 +50,4 @@ class AllKitchenAdapter(var mContext: Context,
         val result = viewModel.kitchenDesignType(kitchen.id)
         holder.desing.designType = result
     }
-
-
-
 }

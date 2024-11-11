@@ -10,4 +10,5 @@
     <string name="restaurants">Restaurants</string>
     <string name="image">Resim</string>
     <string name="view">View</string>
+    <string name="emptyString">""</string>
 </resources>

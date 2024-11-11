@@ -29,10 +29,10 @@ class HomeFragment : Fragment() {
 
         design = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
 
-        design.toolbarTitle = getString(R.string.homePageTitle)
-        design.kitchensTitle = getString(R.string.kitchensTitle)
-        design.allKitchensTitle = getString( R.string.allKitchensTitle)
-        design.restaurants = getString(R.string.restaurants)
+        design.toolbarTitle = getString(viewModel.toolbarTitle)
+        design.kitchensTitle = getString(viewModel.kitchensTitle)
+        design.allKitchensTitle = getString(viewModel.allKitchensTitle)
+        design.restaurants = getString(viewModel.restaurants)
 
 
         design.kitchensRycV.layoutManager = LinearLayoutManager(requireContext(),
